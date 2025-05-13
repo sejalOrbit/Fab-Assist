@@ -39,7 +39,7 @@ def get_answer_from_groq(query: str) -> str:
     }
 
     data = {
-        "model": "deepseek-r1-distill-llama-70b",  # You can change to "qwen-qwq-32b" if needed
+        "model": "qwen-qwq-32b",  # You can change to "qwen-qwq-32b" if needed
         "messages": [
             {
                 "role": "system",
