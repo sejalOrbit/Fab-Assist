@@ -30,51 +30,99 @@ if (input) {
 def get_context(df) -> str:
     return "\n".join(df.astype(str).fillna("").values.flatten())
 
-# Groq API call
 def get_answer_from_groq(query: str) -> str:
-    context = get_context(df)
-    prompt = f"""
-You are a fab assistant for semiconductor engineers. Use the following instructions to answer queries based on the context provided.
-
-🎯 Instructions:
-- Answer clearly, with **short, and maximum 5 step-by-step points**
-- Use plain language — avoid chatty or reflective tone
-- dont use "I see", "Let me", or long explanations
-- **Max: 4 bullet points**
-- No intro, no summary, no repeats of the question, only the answer
-
-🧠 Use provided context. If not enough info, use general fab knowledge.
-If still unclear, say:
-"I cannot answer this based on the provided context. Please provide more details."
-
-Context:
-{context}
-
-Question:
-{query}
-
-Answer:
-    """
+    context = get_context(df)  # Make sure 'df' is defined elsewhere
 
     headers = {
         "Authorization": f"Bearer {st.secrets['groq_api_key']}",
         "Content-Type": "application/json"
     }
+
     data = {
-        "model": "deepseek-r1-distill-llama-70b",  # or "llama3-8b-8192"
+        "model": "llama3-8b-8192",  # You can change to "qwen-qwq-32b" if needed
         "messages": [
-            {"role": "system", "content": "You are a helpful assistant for Fab Engineers."},
-            {"role": "user", "content": prompt}
+            {
+                "role": "system",
+                "content": """
+You are a fab assistant for semiconductor engineers.
+
+🎯 Instructions:
+- Answer clearly with **short, and max 5 step-by-step points**
+- Use plain language — avoid reflective or chatty tone
+- Do NOT use phrases like "Let me", "I see", or long intros
+- Use **no more than 4 bullet points**
+- Output only the answer — no summary or question repeats
+
+🧠 Use only the provided context. If context is not sufficient, rely on general fab knowledge.
+If still unclear, respond exactly with:
+"I cannot answer this based on the provided context. Please provide more details."
+"""
+            },
+            {
+                "role": "user",
+                "content": f"Context:\n{context}\n\nQuestion:\n{query}"
+            }
         ],
         "temperature": 0.5,
-        "max_tokens": 1024
+        "max_tokens": 512
     }
 
     try:
-        response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=data)
+        response = requests.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers=headers,
+            json=data
+        )
         return response.json()["choices"][0]["message"]["content"].strip()
     except Exception as e:
         return f"⚠️ Groq API Error: {e}"
+    
+# Groq API call
+# def get_answer_from_groq(query: str) -> str:
+#     context = get_context(df)
+#     prompt = f"""
+# You are a fab assistant for semiconductor engineers. Use the following instructions to provide a summarized answer in not more than 100 words
+# to answer queries based on the context provided.
+
+# 🎯 Instructions:
+# - Answer clearly, with **short, and maximum 5 step-by-step points**
+# - Use plain language — avoid chatty or reflective tone
+# - dont use "I see", "Let me", or long explanations
+# - **Max: 4 bullet points**
+# - No intro, no summary, no repeats of the question, only the answer
+
+# 🧠 Use provided context. If not enough info, use general fab knowledge.
+# If still unclear, say:
+# "I cannot answer this based on the provided context. Please provide more details."
+
+# Context:
+# {context}
+
+# Question:
+# {query}
+
+# Answer:
+#     """
+
+#     headers = {
+#         "Authorization": f"Bearer {st.secrets['groq_api_key']}",
+#         "Content-Type": "application/json"
+#     }
+#     data = {
+#         "model": "llama3-8b-8192",  # or "llama3-8b-8192"
+#         "messages": [
+#             {"role": "system", "content": "You are a helpful assistant for Fab Engineers."},
+#             {"role": "user", "content": prompt}
+#         ],
+#         "temperature": 0.5,
+#         "max_tokens": 1024
+#     }
+
+#     try:
+#         response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=data)
+#         return response.json()["choices"][0]["message"]["content"].strip()
+#     except Exception as e:
+#         return f"⚠️ Groq API Error: {e}"
 
 # Chat input with Send and Clear in a row
 with st.form(key="chat_form", clear_on_submit=True):
