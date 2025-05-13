@@ -39,7 +39,7 @@ def get_answer_from_groq(query: str) -> str:
     }
 
     data = {
-        "model": "llama3-8b-8192",  # You can change to "qwen-qwq-32b" if needed
+        "model": "meta-llama/llama-4-maverick-17b-128e-instruct",  # You can change to "qwen-qwq-32b" if needed
         "messages": [
             {
                 "role": "system",
@@ -48,9 +48,9 @@ You are a fab assistant for semiconductor engineers. Use the following instructi
 
 🎯 Instructions:
 - Answer clearly with **short, and step-by-step points**
-- Use plain language — avoid reflective or chatty tone
+- Use plain language to explain the user — avoid reflective or chatty tone and do not copy paste exact solution from the provided context
 - Do NOT use phrases like "Let me", "I see", or long intros
-- Output only the answer refereing bit to the document. Do  not write  summary or question repeats
+-  Do  not write  summary or question repeats
 
 🧠 Use only the provided context. If context is not sufficient, rely on general fab knowledge.
 If still unclear, respond exactly with:
