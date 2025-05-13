@@ -39,7 +39,7 @@ def get_answer_from_groq(query: str) -> str:
     }
 
     data = {
-        "model": "qwen-qwq-32b",  # You can change to "qwen-qwq-32b" if needed
+        "model": "llama3-8b-8192",  # You can change to "qwen-qwq-32b" if needed
         "messages": [
             {
                 "role": "system",
