@@ -72,9 +72,19 @@ If still unclear, respond exactly with:
             headers=headers,
             json=data
         )
-        return response.json()["choices"][0]["message"]["content"].strip()
+
+        res_json = response.json()
+
+        # 💡 Check for success first
+        if "choices" in res_json:
+            return res_json["choices"][0]["message"]["content"].strip()
+        elif "error" in res_json:
+            return f"❌ Groq Error: {res_json['error']['message']}"
+        else:
+            return f"⚠️ Unexpected response: {res_json}"
+
     except Exception as e:
-        return f"⚠️ Groq API Error: {e}"
+        return f"⚠️ Groq API Exception: {e}"
     
 # Groq API call
 # def get_answer_from_groq(query: str) -> str:
