@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import streamlit as st
-import google.generativeai as genai
+import requests
 import streamlit.components.v1 as components
 
 # Page layout
@@ -11,10 +11,6 @@ st.markdown("<p style='text-align: center;'>Ask me your tool or fab-related issu
 
 # Load Excel data
 df = pd.read_excel("Queries.xlsx")
-
-# Configure Gemini
-genai.configure(api_key="YOUR_API_KEY")
-model = genai.GenerativeModel("models/gemini-1.5-pro")
 
 # Session history
 if "chat_history" not in st.session_state:
@@ -34,17 +30,21 @@ if (input) {
 def get_context(df) -> str:
     return "\n".join(df.astype(str).fillna("").values.flatten())
 
-# Gemini response
-def get_answer_from_gemini(query: str) -> str:
+# Groq API call
+def get_answer_from_groq(query: str) -> str:
     context = get_context(df)
     prompt = f"""
-You are a helpful assistant for Fab Engineers, specializing in semiconductor tools, issues, and best practices.
+You are a fab assistant for semiconductor engineers. Use the following instructions to answer queries based on the context provided.
 
-Below is some context from a knowledge base document. Use it when relevant to answer the user's question in **step-by-step**, easy-to-understand language. Do not copy exact lines — explain clearly and naturally.
+🎯 Instructions:
+- Answer clearly, with **short, and maximum 5 step-by-step points**
+- Use plain language — avoid chatty or reflective tone
+- dont use "I see", "Let me", or long explanations
+- **Max: 4 bullet points**
+- No intro, no summary, no repeats of the question, only the answer
 
-If the user asks **general questions** about fab processes, semiconductors, machinery, tools, or troubleshooting, you can use your general knowledge even if it’s not found in the context.
-
-If no answer is available or relevant even after that, politely reply:  
+🧠 Use provided context. If not enough info, use general fab knowledge.
+If still unclear, say:
 "I cannot answer this based on the provided context. Please provide more details."
 
 Context:
@@ -53,13 +53,28 @@ Context:
 Question:
 {query}
 
-Answer (in step-by-step natural language):
+Answer:
     """
+
+    headers = {
+        "Authorization": f"Bearer {st.secrets['groq_api_key']}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "model": "deepseek-r1-distill-llama-70b",  # or "llama3-8b-8192"
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant for Fab Engineers."},
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.5,
+        "max_tokens": 1024
+    }
+
     try:
-        response = model.generate_content(prompt)
-        return response.text.strip()
+        response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=data)
+        return response.json()["choices"][0]["message"]["content"].strip()
     except Exception as e:
-        return f"⚠️ Gemini API Error: {e}"
+        return f"⚠️ Groq API Error: {e}"
 
 # Chat input with Send and Clear in a row
 with st.form(key="chat_form", clear_on_submit=True):
@@ -81,11 +96,11 @@ if send and query.strip():
     question = query.strip()
     st.session_state.chat_history.insert(0, ("👩‍💻", question))
     with st.spinner("Thinking..."):
-        answer = get_answer_from_gemini(question)
+        answer = get_answer_from_groq(question)
     st.session_state.chat_history.insert(0, ("🤖", answer))
     st.rerun()
 
-# Chat history (latest on top, question first then answer)
+# Chat history
 st.markdown("<hr>", unsafe_allow_html=True)
 for i in range(0, len(st.session_state.chat_history), 2):
     pair = st.session_state.chat_history[i:i+2]
