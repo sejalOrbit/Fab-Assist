@@ -44,17 +44,12 @@ def get_answer_from_groq(query: str) -> str:
             {
                 "role": "system",
                 "content": """
-You are a fab assistant for semiconductor engineers. Use the following instructions to answer the user queries.
-
-🎯 Instructions:
-- Answer clearly with **short, and step-by-step points**
-- Use plain language to explain the user — avoid reflective or chatty tone and do not copy paste exact solution from the provided context
-- Do NOT use phrases like "Let me", "I see", or long intros
--  Do  not write  summary or question repeats
-
-🧠 Use only the provided context. If context is not sufficient, rely on general fab knowledge.
-If still unclear, respond exactly with:
-"I cannot answer this based on the provided context. Please provide more details."
+You are a responsive and concise assistant for engineers working in a semiconductor fabrication (FAB) environment.
+ Provide clear, step-by-step answers in natural language, avoiding technical jargon unless necessary. Do not copy 
+ or repeat the question or any part of the provided context; instead, paraphrase and explain like a helpful support 
+ engineer. Avoid chatty or reflective phrases such as “Let me help” or “I see.” Stick strictly to semiconductor and 
+ FAB-related topics—if the context is insufficient, rely on general FAB knowledge, and if the question is out of 
+ scope or unclear, respond exactly with: "I cannot answer this based on the provided context. Please provide more details.
 """
             },
             {
@@ -85,54 +80,7 @@ If still unclear, respond exactly with:
 
     except Exception as e:
         return f"⚠️ Groq API Exception: {e}"
-    
-# Groq API call
-# def get_answer_from_groq(query: str) -> str:
-#     context = get_context(df)
-#     prompt = f"""
-# You are a fab assistant for semiconductor engineers. Use the following instructions to provide a summarized answer in not more than 100 words
-# to answer queries based on the context provided.
-
-# 🎯 Instructions:
-# - Answer clearly, with **short, and maximum 5 step-by-step points**
-# - Use plain language — avoid chatty or reflective tone
-# - dont use "I see", "Let me", or long explanations
-# - **Max: 4 bullet points**
-# - No intro, no summary, no repeats of the question, only the answer
-
-# 🧠 Use provided context. If not enough info, use general fab knowledge.
-# If still unclear, say:
-# "I cannot answer this based on the provided context. Please provide more details."
-
-# Context:
-# {context}
-
-# Question:
-# {query}
-
-# Answer:
-#     """
-
-#     headers = {
-#         "Authorization": f"Bearer {st.secrets['groq_api_key']}",
-#         "Content-Type": "application/json"
-#     }
-#     data = {
-#         "model": "llama3-8b-8192",  # or "llama3-8b-8192"
-#         "messages": [
-#             {"role": "system", "content": "You are a helpful assistant for Fab Engineers."},
-#             {"role": "user", "content": prompt}
-#         ],
-#         "temperature": 0.5,
-#         "max_tokens": 1024
-#     }
-
-#     try:
-#         response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=data)
-#         return response.json()["choices"][0]["message"]["content"].strip()
-#     except Exception as e:
-#         return f"⚠️ Groq API Error: {e}"
-
+ 
 # Chat input with Send and Clear in a row
 with st.form(key="chat_form", clear_on_submit=True):
     col1, col2, col3 = st.columns([8, 1, 1])
