@@ -1,0 +1,465 @@
+Alarms Manual
+Doc. No. 1D97-410832-21
+Alarms Manual, UnityII 85DRM
+Tokyo Electron Limited Revision 1.0 i
+Etch Systems: UnityII 85DRM Printed: 3/7/00Alarms Manual
+Doc. No. 1D97-410832-21
+© 2000 by Tokyo Electron America, Inc. All rights reserved. Printed in the United States of America.
+No part of this publication may be reproduced, stored in a retrieval system, or transmitted in any form or by any means, electronic,
+mechanical, photocopying, recording, or otherwise without the prior written permission of Tokyo Electron America.
+This manual is provided solely to support customers who purchase and use “Semiconductor Manufacturing Equipment” from Tokyo
+Electron Limited. Unauthorized use and unauthorized copying or reproduction of this manual or any portion thereof is prohibited.
+In exclusion to this, customers of Tokyo Electron America who have received this document directly from Tokyo Electron America as
+part of an equipment purchase, attended training class, or related document revision, are hereby granted permission to re-use and
+reprint excerpts from this material for internal use, inclusive of, but not limited to, training documentation. Any re-use or reprint of
+any information in accordance with this provision must credit Tokyo Electron Limited as the source and copyright owner of the
+information.
+Users, who purchase and use “Semiconductor Manufacturing Equipment” from Tokyo Electron Limited, are expressively advised that
+determination of using any process patent rights and any risk of such rights are entirely their own responsibility. It is the responsibility
+of the users of this manual to establish appropriate safety and health practices and determine the applicability of regulatory limitations
+prior to use.
+The contents of manual may be changed without prior notice.
+Tokyo Electron America, Inc.Technical Publications Department2400 Grove Blvd., P.O. Box 17200Austin, Texas 78760Phone: 1-
+800-832-1525Fax: 1-512-424-1035E-mail: techpubs@aus.telusa.com
+The consequence of unskilled, improper, or careless operation of this equipment can be serious. This equipment must be operated and
+maintained only by trained personnel, authorized by the user to perform their specific functions.
+Every operator and service person must read and thoroughly understand the operation and maintenance manuals and any additional
+information provided by the Maker with respect to the equipment.
+All Danger, Warning, and Cautionary notices must be carefully read thoroughly understood, and strictly observed.
+Users of the equipment assume responsibility for implementation of all Federal, State, and local safety regulations applicable to their
+equipment installations.
+The Maker assumes no liability for damage due to improper operation or misuse of the equipment.
+ii Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMAlarms Manual
+Doc. No. 1D97-410832-21
+Revision Information
+Rev. # Description of document changes. DCN# Date
+1.0 Initial release. Conforms to software version 24 Mar 2000
+3.x.
+Tokyo Electron Limited Revision 1.0 iii
+Etch Systems: UnityII 85DRM Printed: 3/7/00Alarms Manual
+Doc. No. 1D97-410832-21
+Preface
+About This Manual
+The Alarms Manual provides information about the etcher alarms, their causes, and alarm
+recovery.
+About the Set of Manuals
+The document set includes the following individual manuals:
+Basic Operations Manual - This manual includes chapters on safety, operating the touch
+screen, preparing for operation, operating the etcher, and handling alarms
+Advanced Operations Manual - This manual includes chapters on safety, main and item
+menus, system parameters, creating system and process recipes, assessing and using logs,
+maintenance operations, and accessing system information. The manual includes written
+descriptions of the major software program modules and also provides a hierarchy of the
+screen menus.
+Maintenance Manual - This manual includes chapters on safety, the factory-
+recommended preventive maintenance (PM) schedule, procedures for alignments,
+checking/adjusting, cleaning, replacing, and troubleshooting information.
+Process Engineering Manual - This manual includes explanations about plasma etching
+theory, the DRM process chamber, etch applications, recipes and methods for collecting
+etch data, and troubleshooting process problems.
+Theory of Operation Manual - This manual describes the detailed theory of operation for
+the etcher. The manual describes how the various assemblies and subsystems work
+together to provide the general functions of the machine, and describes the functions of
+all major mechanical/pneumatic/vacuum assemblies and printed circuit boards.
+Alarms Manual - This manual includes all alarm messages.
+Installation Manual - This manual includes chapters on safety, general machine
+connections, preparing the etcher, setting up the etcher, and startup operations.
+iv Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMAlarms Manual
+Doc. No. 1D97-410832-21
+Who Should Read this Manual
+This manual is primarily intended for Operators, Maintenance Engineers, and Process
+Engineers.
+WARRANTY AND LIABILITY STATEMENT
+An explanation for warranty and liability for the products.
+Warranty for the Products
+TOKYO ELECTRON LIMITED (“TEL”) shall warrant certain items supplied by TEL
+(“Products”) to be free from defects in material and workmanship.
+Warranty Period
+The warranty period of the Products shall be on (1) year from the date when the Products
+satisfy the acceptance criteria.
+Exception
+Remedies of the Products user (“User”) and TEL’s liability under this warranty shall not
+be available for the following troubles and damages:
+(i) Troubles and damages of the Products caused by the parts designated or supplied by
+the User.
+(ii) Troubles and damages of the Products caused by the parts not supplied by TEL or
+TEL’s authorized supplier. Even if the parts are supplied by TEL’s authorized supplier,
+TEL is not liable to the troubles and damages of the Products caused by such parts’
+defects in material and workmanship.
+(iii) Troubles and damages of the Products caused by the force majeure, including
+without limitation, governmental acts or directives; strikes; acts of God; war;
+insurrection, riot or civil commotion; natural disaster, fires, flooding; explosions.
+(iv) Troubles and damages of the Products caused by the User’s improvement without
+TEL’s consent, misuse or use of improper process material.
+(v) Consequential damages, including without limitation, damages resulting from inferior
+products or decrease of production, caused by misuse and breakdown of the Products.
+THIS WARRANTY IS EXCLUSIVE AND IN LIEU OF ALL OTHER WARRANTIES,
+WHETHER EXPRESSED OR INPLIED, WRITTEN OR ORAL, STATUTORY OR
+OTHEREWISE, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED
+WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR
+PURPOSE.
+Tokyo Electron Limited Revision 1.0 v
+Etch Systems: UnityII 85DRM Printed: 3/7/00Alarms Manual
+Doc. No. 1D97-410832-21
+The expenses required for the spare parts, labor, transportation, etc., in order to maintain
+the Products after the expiration of the warranty period and consumable goods be borne
+by the User.
+Liability For Personal Injury
+TEL shall be liable for the personal injury resulting from TEL’s performance or work of
+the Products, in accordance with the purchase contract of the Products and the applicable
+law.
+Liability for Damage Due to Operation of the Product
+Every operator and service person must read, thoroughly understand the operation and
+maintenance manuals and any additional information provided by TEL with respect to the
+Products and have sufficient training concerning operation of the Products. All Danger,
+Warning and Cautionary notices must be carefully read, thoroughly understood and
+strictly observed. The User assumes its responsibility to implement all Governmental,
+Federal, State and local safety regulations applicable to the use of the Products.
+TEL assumes no liability for the following damages and loss:
+(i) Damages due to improper operation or maintenance of the Products.
+(ii) Damages caused by the alteration or addition made by anyone other than TEL as to
+the manuals which TEL provides with respect to the Products.
+(iii) Damages resulting no action of Field Change Notice by the User in spite of TEL’s
+notice.
+(iv) Damages and loss resulting from operation of the Products.
+(v) Damages of the Products caused by the parts not supplied by TEL’s authorized
+supplier
+(vi) Damages of the Products caused by defects of the parts supplied by TEL’s authorized
+supplier.
+(vii) Damages of the Products caused by the force majeure, including without limitation,
+governmental acts or directives; strikes; acts of God; war; insurrection, riot or civil
+commotion; natural disaster, fires, flooding; explosions.
+(viii) Consequential damages, including, without limitation, damages resulting from
+inferior products or decrease of production, caused by misuse or breakdown of the
+Products.
+vi Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMAlarms Manual
+Doc. No. 1D97-410832-21
+Defective Work and Incomplete Performance of the Products
+In the event that the Products are maintained and improved with the parts not supplied by
+TEL or TEL’s authorized supplier, the User shall deserve the possibility of defective
+work and incomplete performance of the Products.
+Infringement
+TEL agrees to indemnify and hold the User harmless from and against all damages and
+costs, including legal fees, which may be assessed against the User in any claim or action
+by third parties alleging unlawful acts or omissions to act, such as trademark, copyright,
+mask works right or patent infringement, where alleged liability of the User arises by
+reason of the Products, provided that the User shall give TEL prompt notice, in writing,
+of all such claims or actions instituted against it, and an opportunity to elect to take over,
+settle or defend the same through counsel of its own choice and under its sole discretion
+and at its own expense, and will make available to TEL in the event of such election, all
+defenses against such claims or actions, known or available to the User. TEL shall not be
+liable and the User shall provide to TEL the same indemnification as set forth above if an
+infringement has been occasioned by the User’s designs, specifications, instructions,
+modifications, improvements or developments, or by any methods or processes used by
+the User with respect to the Products.
+Limitation of Liability
+IN NO EVENT SHALL TEL BE LIABLE FOR ANY INDIRECT, INCIDENTIAL,
+SPECIAL OR CONSEQUENTIAL DAMAGES, INCLUDING, WITHOUT
+LIMITATION, LOSS OF PROPERTY, LOSS OF PROFITS OR LOSS OF
+PRODUCTION DAMAGES, RESULTING FROM THE PRODUCTS OR CAUSED BY
+INSTALLATION, MAINTENANCE OR OTHER PERFOMANCE BY TEL,
+WHTHER, A CLAIM FOR SUCH DAMAGE IS BASED UPON WARRANTY,
+CONTRACT, TORT, NEGLIGENCE OR OTHERWISE. TEL’S TOTAL LIABILITY
+FOR THE CLAIM OF LOSS OR DAMAGE CONCERNING THE PURCHASE, USE,
+OR OPERATION OF THE PRODUCTS SHALL IN NO EVENT EXCEED THE
+PURCHASE PRICE PAID BY THE USER TO TEL FOR THE PRODUCTS
+INVOLVED IN SUCH CLAIM.
+Tokyo Electron Limited Revision 1.0 vii
+Etch Systems: UnityII 85DRM Printed: 3/7/00Alarms Manual
+Doc. No. 1D97-410832-21
+viii Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMTable of Contents
+CHAPTER 1
+Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .1
+Overview of the Alarms Manual. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+Typographical Conventions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+Notices. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+Documentation Numbers Defined . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+Ordering Documentation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+Procedure Times . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .4
+Applicability of the Manual . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+Notice for Using the System of Equipment. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+License Grant. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .5
+Scope of the Right to Use . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+Proprietary Rights. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+LIMITATION OF LIABILITY . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+Manufacturing of Similar Software . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .6
+Assignment. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .6
+Sales and Service Offices Worldwide . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+CHAPTER 2
+Alarms. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .11
+Alarms Relating to the System. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+Alarms Relating to the AGV Communication. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+Alarms Relating to the T/C and P/A. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .130
+Alarms Relating to the C/C and Indexer. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .195
+Alarms Relating to the P/C. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .235
+Alarms Relating to the C/C and T/C Communications. . . . . . . . . . . . . . . . . . . . .528
+Alarms Relating to the Online with the Host. . . . . . . . . . . . . . . . . . . . . . . . . . . . .530
+Glossary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .549
+Index . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .579
+Tokyo Electron Limited Revision 1.0 ix
+Etch Systems: UnityII 85DRM Printed: 3/7/00Table of Contents Alarms Manual
+Doc. No. 1D97-410832-21
+x Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMChapter 1
+Introduction
+Chapter 1
+Introduction
+Chapter Summary
+This chapter provides chapter overviews, describes the typographical conventions used,
+and covers units of measure used in this manual.
+Tokyo Electron Limited Revision 1.0 1
+Etch Systems: UnityII 85DRM Printed: 3/7/00Chapter 1 Alarms Manual
+Introduction Doc. No. 1D97-410832-21
+1.1 Overview of the Alarms Manual
+This manual is organized by alarm code.
+Chapter 1, Introduction, presents an overview of all the manuals in the series.
+Chapter 2, Alarms, describes alarm numbers, messages, causes, and recovery actions.
+2 Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMAlarms Manual Chapter 1
+Doc. No. 1D97-410832-21 Introduction
+1.2 Typographical Conventions
+Typographical conventions used in this manual include text formatting for: HARDWARE
+SWITCHES, SOFTWARE BUTTONS, menus, menu items, and screen names.
+Safety tables like the one below appear at the beginning of each procedure. No safety
+hazards within a category are represented by dashes (—).
+Category Criteria Severity Area
+Electrical SEMI Hot Work Type 3 Line voltage
+Mechanical — — —
+Chemical — — —
+Radiation — — —
+This manual uses SI units throughout, with Torr in parentheses. The table below shows
+common SI prefixes expressed different ways.
+Multiplication Multiplication SI
+Factor Factor Prefix Symbol
+1 000 000 000 000 1012 tera T
+1 000 000 000 109 giga G
+1 000 000 106 mega M
+1 000 103 kilo k
+0.01 10-2 centi c
+0.001 10-3 milli m
+0.000 001 10-6 micro u
+0.000 000 001 10-9 nano n
+0.000 000 000 001 10-12 pico p
+Tokyo Electron Limited Revision 1.0 3
+Etch Systems: UnityII 85DRM Printed: 3/7/00Chapter 1 Alarms Manual
+Introduction Doc. No. 1D97-410832-21
+1.3 Notices
+1.3.1 Documentation Numbers Defined
+There are two document numbers on the cover of this manual. Note that an (N)
+follows one number, and a (C) follows the other. The number preceding the (N)
+refers to the normal bond paper documentation number. The number preceding the
+(C) refers to the clean room paper documentation number.
+1.3.2 Ordering Documentation
+If you require normal paper copy of a manual, order using the number with the (N). If
+you require clean room paper copy of a manual, order using the number with the (C).
+Include the (N) or (C) as part of the document number when ordering.
+1.3.3 Procedure Times
+The times that are shown in the procedures are representative. The published times
+are based on the following conditions:
+• Required tools, parts and personnel are readily available
+• Personnel are trained in TEA level II classes
+• Some times shown do not account for the time required to complete associated
+corrective actions
+• The times do not take local fab site policies into account
+• Procedures are completed as written, without omission or revision
+Therefore, when the procedure is performed at the local fab site, the actual time may
+be different.
+4 Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMAlarms Manual Chapter 1
+Doc. No. 1D97-410832-21 Introduction
+1.3.4 Applicability of the Manual
+If any of the content of the manual is unclear, please contact our service center.
+Since the design of the machine is continuously revised and improved, the
+appearance and other detailed specifications shown in the manual may differ from the
+actual machine.
+Depending on the specifications of the machine, details of the screens shown in the
+manual may differ from those on your actual display.
+1.3.5 Notice for Using the System of Equipment
+Please note the terms and conditions hereinafter, when using the system software
+which is provided by Tokyo Electron Limited ("TEL") with TEL’s equipment
+("Software"). The Software includes, without limitation, manuals, related materials
+and updates of such system software.
+1.3.5.1 License Grant
+TEL hereby grants to you a non-transferable and non-exclusive right to use the
+Software, subject to the terms and conditions hereinafter set forth.
+1.3.5.2 Scope of the Right to Use
+1. You may use the Software for internal purpose only, but shall not alter,
+resell, lease or take any other act to the Software except as specifically
+authorized hereby.
+2. You may use the Software only on TEL’s equipment.
+3. You shall not copy the Software for any purposes.
+4. You agree not to reverse assemble, decompile, or otherwise attempt to derive
+source code from the Software.
+Tokyo Electron Limited Revision 1.0 5
+Etch Systems: UnityII 85DRM Printed: 3/7/00Chapter 1 Alarms Manual
+Introduction Doc. No. 1D97-410832-21
+1.3.5.3 Proprietary Rights
+1. You acknowledge that the Software and the documentation of the Software,
+the copies thereof, and the information contained therein, shall be the
+confidential property of TEL or its licensor ("Licensor"), and the title to, and
+the copyright of such property shall be remained in TEL or Licensor. You
+shall not disclose such information to any third party, without prior written
+approval of TEL.
+2. You shall not alter or remove from, and shall affix to, the Software and the
+copies thereof, any notice of copyright and confidential proprietary right of
+TEL or Licensor, when you use, copies, alters, combines or utilizes in any
+other manners the Software.
+1.3.5.4 LIMITATION OF LIABILITY
+IN NO EVENT SHALL TEL BE LIABLE FOR ANY INDIRECT,
+INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES, INCLUDING,
+WITHOUT LIMITATION, LOSS OF PROPERTY, LOSS OF PROFITS OR
+LOSS OF PRODUCTION DAMAGES, RESULTING FROM OR ARISING
+OUT OF THE SOFTWARE, WHETHER A CLAIM FOR SUCH DAMAGE IS
+BASED UPON WARRANTY, CONTRACT, TORT, NEGLIGENCE OR
+OTHERWISE. TEL’S TOTAL LIABILITY FOR THE CLAIM OF LOSS OR
+DAMAGE CONCERNING THE SOFTWARE SHALL IN NO EVENT
+EXCEED THE PURCHASE PRICE PAID BY YOU TO TEL FOR TEL’S
+EQUIPMENT INVOLVED IN SUCH CLAIM.
+1.3.5.5 Manufacturing of Similar Software
+You shall not manufacture, nor have any third party manufacture, any software
+which is similar to the Software, based on the technology, data, information, etc.
+obtained from the Software.
+1.3.5.6 Assignment
+Unless specifically approved by TEL, you shall not assign or transfer, in whole or
+in part, the license of Software granted to you hereunder to any third parties.
+6 Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMAlarms Manual Chapter 1
+Doc. No. 1D97-410832-21 Introduction
+1.4 Sales and Service Offices Worldwide
+In case of emergency, contact our sales and service offices with reference to the list
+below. The latest information related to the sales and service offices are shown in the
+following URL. Visit our home page and check the latest information.
+URL (Japan): http://www.tel.co.jp/kyoten/telj.html
+URL (Overseas): http://www.tel.co.jp/tel-e/offices/tele.html
+Tokyo Electron Sales and Service Offices Worldwide
+Address Telephone FAX
+TOKYO ELECTRON AMERICA, INC.
+Austin Office 2400 Grove Boulevard, 512-424-1000 512-424-1001
+(Head Office) Austin, Texas 78760 U.S.A.
+Dallas Office 1651 N. Collins Blvd., Suite 150, 972-705-9234 972-705-9987
+Richardson, Texas 75080 U.S.A.
+East Fishkill Office 775 Route 82, Suite 10, 914-221-2471 914-221-4051
+Hopewell Junction, New York 12533
+U.S.A.
+Eugene Oregon Office 1710 Willow Creek Circle, Suite 100 541-345-6200 541-345-2482
+Eugene, Oregon 97402 U.S.A.
+Los Angeles Office 23440 Hawthorne Blvd., Suite 260, 310-378-7663 310-378-1320
+Torrance, California 90505 U.S.A.
+Manassas Office 10318 Battleview Parkway, 703-392-1800 703-392-1801
+Manassas, Virginia 20109 U.S.A.
+Phoenix Office 2120 West Guadalupe Road, Gilbert, 480-539-2000 480-539-2001
+Arizona 85233 U.S.A.
+Portland Office 5350 N.E. Dawson Creek Drive, 503-615-2400 503-615-2401
+Hillsboro, Oregon 97124 U.S.A.
+Richmond Office 2108 W. Laburnum Ave., Suite100, 804-204-1900 804-204-1901
+Richmond, Virginia 23227 U.S.A.
+Roseville Office 660 Commerce Drive, Suite E, 916-772-5200 916-772-5202
+Roseville, California 95678 U.S.A.
+Tokyo Electron Limited Revision 1.0 7
+Etch Systems: UnityII 85DRM Printed: 3/7/00Chapter 1 Alarms Manual
+Introduction Doc. No. 1D97-410832-21
+Tokyo Electron Sales and Service Offices Worldwide
+Address Telephone FAX
+Santa Clara Office 2953 Bunker Hill Lane, Suite 201 408-566-4300 408-919-4701
+Santa Clara, California 95054 U.S.A.
+South Portland Office 500 South Borough Office Park, 207-775-0996 207-775-0985
+South Portland, Maine 04106 U.S.A.
+TOKYO ELECTRON EUROPE LIMITED
+Crawley Office Premiere House, Betts Way, London 1293-655800 1293-655888
+(Head Office) Road, Crawley, West Sussex RH10
+2GB, England
+Gateshead Office Unit 7, Carlton Court, Firth Avenue, 1914202555 1914202550
+Team Valley Trading Estate
+Gateshead, NE11 OAZ, England
+Livingston Office Unit 1, Alderstone Business Park, 1506-420044 1506-420055
+MacMillan Road, Livingston EH54
+7DF, Scotland
+TOKYO ELECTRON ITALIA S.p.A.
+Milan Office Centro Direzionale Colleoni, via 39-656081 39-65608333
+Paracelso 26, Italia
+TOKYO ELECTRON DEUTSCHLAND GmbH
+Munich Office Office-Center-Ismaning, Carl-Zeiss- 89-96278-0 89-96278-111
+(Head Office) Ring 5, 85737, Ismaning, Germany
+Dresden Office Marsdorfer Strasse 5, Haus 2, 351-885920 351-8859288
+01109, Dresden, Germany
+TOKYO ELECTRON NEDERLAND B.V.
+Kerkenbos 10-15, Unit C, 6546 BB 243726630 243726640
+Nijmegen, The Netherlands
+TOKYO ELECTRON ISRAEL LIMITED
+PO Box 8625, GAT 2000, Kiryat Gat 972-7-681-0860 972-7-681-0862
+82000, Israel
+TOKYO ELECTRON FRANCE S.A.R.L.
+1 De la Dhuy, 38240 Meylan, France 4760-41244 4760-41243
+TOKYO ELECTRON KOREA LIMITED
+8 Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMAlarms Manual Chapter 1
+Doc. No. 1D97-410832-21 Introduction
+Tokyo Electron Sales and Service Offices Worldwide
+Address Telephone FAX
+Pundang Office 325-230 Dongchun-ri, 0331-260-5000 0331-260-5290
+(Head Office) Suji-up, Yongin-city,
+Kyonggi-do,449-840 Korea
+Cheongju Office 5FL, In-Hwa Bldg., 1827 0331-260-5240 0431-276-8561
+Pongmyoung-dong
+Cheongju-city, Chungbuk 360-300
+Korea
+Gumi Office 2FL, Yeil Bldg., 1034-12 Won 0331-260-5261 0331-260-5260
+Pyung-dong, Gumi-city, Kyong Sang
+Buk-do, 730-010 Korea
+Icheon Office 4FL, Hyundai City Plaza, 726-9, 0331-260-5270 0336-637-4180
+Ami-ri, Pubal-eup, Icheon-si,
+Kyonggi-do 467-860 Korea
+Kiheung Office 4FL, Junghak Bldg., 701-12, Komae- 0331-260-5280 0331-260-5284
+ri, Kiheung-eup, Yongin-si, Kyonggi-
+do, 449-900 Korea
+Pucheon Office 3FL, Yuspo Sports Center 169-15 0331-260-5259 032-675-2788
+Yakdae-dong, Wonmi-ku, Pucheon-
+city, Kyonggi-do 420-140 Korea
+TOKYO ELECTRON TAIWAN LIMITED.
+Hsin-Chu Office 2FL, No.346, Pei Da Road, Hsin-Chu, 3-525-3400 3-525-3405
+Taiwan, R.O.C.
+Tokyo Electron Limited Revision 1.0 9
+Etch Systems: UnityII 85DRM Printed: 3/7/00Chapter 1 Alarms Manual
+Introduction Doc. No. 1D97-410832-21
+10 Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRMChapter 2
+Alarms
+Chapter 2
+Alarms
+Chapter Summary
+This chapter lists the alarms on the etcher.
+Tokyo Electron Limited Revision 1.0 11
+Etch Systems: UnityII 85DRM Printed: 3/7/00Chapter 2 Alarms Manual
+Alarms Doc. No. 1D97-410832-21
+2.1 Alarms Relating to the System
+ALARM NUMBER: 0001
+Alarm Message: C1 Mapping Data Error
+Recovery: Accept Clears the error message. Check the wafer in the cassette and restart.
+Cause: A mapping wafer data error occurred when cleaning out/replacing dummy wafer
+on cassette 1. Occurs when there are wafers in the cassettes when cleaning out. Occurs
+when there are wafers in cassette slots 4 - 6 when replacing dummy wafers. Refer to the
+slot information on the Slot Status Screen. The cassette will be automatically unloaded.
+Check the wafer in the cassette.
+ALARM NUMBER: 0002
+Alarm Message: C1 Mapping Data Error
+Recovery: Abort Unloads the cassette. Check the wafer in the cassette. Restarts after
+checking the multi lot slot designation.
+Cause: A mapping wafer data error occurred when performing multi lot start on cassette
+1. This occurs when there are no wafers in the multi lots designated slot. Refer to the
+slot information on the Slot Status Screen. The slot designation when starting or the
+cassette is incorrect.
+ALARM NUMBER: 0003
+Alarm Message: C1 Mapping Data Error
+Recovery:
+Cause: Not used.
+ALARM NUMBER: 0004
+Alarm Message: C2 Mapping Data Error
+Recovery: Accept Clears the error message. Check the wafer in the cassette and restart.
+Cause: A mapping wafer data error occurred when cleaning out/replacing dummy wafer
+on cassette 2. Occurs when there are wafers in the cassettes when cleaning out. Occurs
+12 Revision 1.0 Tokyo Electron Limited
+Printed: 3/7/00 Etch Systems: UnityII 85DRM

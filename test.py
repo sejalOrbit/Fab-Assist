@@ -12,6 +12,7 @@ st.markdown("<p style='text-align: center;'>Ask me your tool or fab-related issu
 # Load Excel data
 df = pd.read_excel("Queries.xlsx")
 
+
 # Session history
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
@@ -32,14 +33,14 @@ def get_context(df) -> str:
 
 # Groq API call
 def get_answer_from_groq(query: str) -> str:
-    context = get_context(df)
+    context = get_context()
     prompt = f"""
 You are a fab assistant for semiconductor engineers. Use the following instructions to answer queries based on the context provided.
 
 🎯 Instructions:
 - Answer clearly, with **short, and maximum 5 step-by-step points**
 - Use plain language — avoid chatty or reflective tone
-- dont use "I see", "Let me", or long explanations
+- don’t use "I see", "Let me", or long explanations
 - **Max: 4 bullet points**
 - No intro, no summary, no repeats of the question, only the answer
 
@@ -72,9 +73,18 @@ Answer:
 
     try:
         response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=data)
-        return response.json()["choices"][0]["message"]["content"].strip()
+        response.raise_for_status()
+        result = response.json()
+
+        if "choices" not in result:
+            return f"⚠️ Groq API Response Missing 'choices': {result}"
+
+        return result["choices"][0]["message"]["content"].strip()
+
+    except requests.exceptions.RequestException as e:
+        return f"⚠️ HTTP Error: {str(e)}"
     except Exception as e:
-        return f"⚠️ Groq API Error: {e}"
+        return f"⚠️ Unexpected Error: {str(e)}"
 
 # Chat input with Send and Clear in a row
 with st.form(key="chat_form", clear_on_submit=True):
